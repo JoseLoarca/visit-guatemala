@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Visit Guatemala</string>
+    <string name="sitios"> Sitios Turísticos</string>
+    <string name="hoteles">Hoteles</string>
+    <string name="cuenta">Mi Cuenta</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
