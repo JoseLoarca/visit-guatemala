@@ -4,4 +4,6 @@
     <string name="hoteles">Hoteles</string>
     <string name="cuenta">Mi Cuenta</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="main.menu.action.about">Acerca del desarrollador</string>
+    <string name="main.menu.action.logout">Cerrar Sesión</string>
 </resources>

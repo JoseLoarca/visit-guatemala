@@ -41,49 +41,60 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("correo", txtEmail.getText().toString());
-                params.put("password", txtPassword.getText().toString());
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, WebService.autenticar, new JSONObject(params), new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray listaUsuarios = response.getJSONArray("user");
-                            if (listaUsuarios.length() > 0) {
-                                JSONObject user = listaUsuarios.getJSONObject(0);
-                                loggedUser = new Usuario(
-                                        user.getInt("idUsuario"),
-                                        user.getString("nombreCompleto"),
-                                        user.getString("telefono"),
-                                        user.getString("correo"),
-                                        user.getString("direccion"),
-                                        user.getString("username"),
-                                        "",
-                                        response.getString("token"),
-                                        response.getString("exp")
-                                );
-                                Intent intent = new Intent(Login.this, Principal.class);
-                                intent.putExtra("loggedUser", loggedUser.getNombreCompleto());
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Verifique sus credenciales!", Toast.LENGTH_LONG).show();
+                boolean failText = false;
+                if(txtEmail.getText().toString().trim().length() == 0){
+                    failText = true;
+                    txtEmail.setError("Este campo es obligatorio!");
+                }
+                if(txtPassword.getText().toString().trim().length() == 0){
+                    failText = true;
+                    txtPassword.setError("Este campo es obligatorio!");
+                }
+                if(failText == false){
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("correo", txtEmail.getText().toString());
+                    params.put("password", txtPassword.getText().toString());
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, WebService.autenticar, new JSONObject(params), new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray listaUsuarios = response.getJSONArray("user");
+                                if (listaUsuarios.length() > 0) {
+                                    JSONObject user = listaUsuarios.getJSONObject(0);
+                                    loggedUser = new Usuario(
+                                            user.getInt("idUsuario"),
+                                            user.getString("nombreCompleto"),
+                                            user.getString("telefono"),
+                                            user.getString("correo"),
+                                            user.getString("direccion"),
+                                            user.getString("username"),
+                                            "",
+                                            response.getString("token"),
+                                            response.getString("exp")
+                                    );
+                                    Intent intent = new Intent(Login.this, Principal.class);
+                                    intent.putExtra("loggedUser", loggedUser.getNombreCompleto());
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Verifique sus credenciales!", Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception ex) {
+                                Log.e("Error: ", ex.getMessage());
                             }
-                        } catch (Exception ex) {
-                            Log.e("Error: ", ex.getMessage());
                         }
-                    }
-                }, new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-                        Log.e("Error: Response", "" +error.getMessage());
-                    }
-                });
-                WebService.getInstance(v.getContext()).addToRequestQueue(request);
+                    }, new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){
+                            Log.e("Error: Response", "" +error.getMessage());
+                        }
+                    });
+                    WebService.getInstance(v.getContext()).addToRequestQueue(request);
             }
-        });
+        }});
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
