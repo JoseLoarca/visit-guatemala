@@ -9,56 +9,73 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.jcloarca.visitguatemala.Login">
 
-    <EditText
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/txtEmail"
-        android:hint="Email..."
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/imageView3"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3"
-        android:drawableLeft="@drawable/email"/>
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
-    <EditText
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/txtPassword"
-        android:hint="Contraseña..."
-        android:layout_below="@+id/txtEmail"
-        android:layout_alignLeft="@+id/txtEmail"
-        android:layout_alignStart="@+id/txtEmail"
-        android:layout_marginTop="29dp"
-        android:gravity="center_horizontal"
-        android:drawableLeft="@drawable/password"/>
+        android:layout_above="@+id/wrapperPassword"
+        android:id="@+id/view">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/txtEmail"
+            android:hint="@string/txtCorreo.hint" />
+    </android.support.design.widget.TextInputLayout>
 
-    <Button
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wrapperPassword"
+        android:layout_above="@+id/layoutButtons"
+        android:layout_centerInParent="true">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/txtPassword"
+            android:hint="@string/txtPassword.hint"
+            android:layout_below="@+id/editText"
+            android:layout_centerHorizontal="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
-        android:id="@+id/btnLogin"
-        android:layout_below="@+id/txtPassword"
+        android:id="@+id/layoutButtons"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
+        android:layout_marginBottom="176dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:id="@+id/btnLogin" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear Cuenta"
+            android:id="@+id/btnRegistro" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView3"
-        android:src="@drawable/login"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crear Cuenta"
-        android:id="@+id/btnRegistro"
-        android:layout_below="@+id/btnLogin"
+        android:id="@+id/imageView2"
+        android:src="@drawable/usericon"
+        android:layout_above="@+id/view"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

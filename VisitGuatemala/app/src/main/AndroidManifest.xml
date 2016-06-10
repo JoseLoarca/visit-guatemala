@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".VisitGuatemalaApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:name=".VisitGuatemalaApp"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".Login" />
         <activity android:name=".Principal" />
-        <activity android:name=".Registro"></activity>
+        <activity android:name=".Registro" />
     </application>
 
 </manifest>

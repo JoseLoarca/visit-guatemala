@@ -13,7 +13,7 @@ import com.android.volley.toolbox.Volley;
  * Created by JCLoarca on 5/27/2016.
  */
 public class WebService {
-    public static String server="http://192.168.1.9:3001/api/v1/";
+    public static String server="http://192.168.101.154:3001/api/v1/";
     public static String autenticar=server+"usuario/login";
     public static String registro = server+"usuario/registro";
     private static WebService mInstance;

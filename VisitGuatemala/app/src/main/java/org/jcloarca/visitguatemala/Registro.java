@@ -73,6 +73,7 @@ public class Registro extends AppCompatActivity {
                     txtContraseña.setError("Este campo es obligatorio!");
                 }
                 if(failText == false){
+                    inputDisabler();
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("nombreCompleto", txtNombre.getText().toString());
                     params.put("telefono", txtTelefono.getText().toString());
@@ -87,7 +88,7 @@ public class Registro extends AppCompatActivity {
                                 String mensajeRespuesta = response.getString("mensaje");
                                 if (mensajeRespuesta.length() > 0) {
                                     new AlertDialog.Builder(Registro.this).setTitle("Éxito!")
-                                            .setMessage("El usuario, "+txtNombre.getText().toString()+ "ha sido registrado con éxito, por favor inicie sesión.")
+                                            .setMessage("El usuario, "+txtNombre.getText().toString()+ " ha sido registrado con éxito, por favor inicie sesión.")
                                             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
@@ -124,5 +125,16 @@ public class Registro extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void inputDisabler() {
+        btnLogin.setEnabled(false);
+        btnRegistrar.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtTelefono.setEnabled(false);
+        txtDireccion.setEnabled(false);
+        txtCorreo.setEnabled(false);
+        txtUsername.setEnabled(false);
+        txtContraseña.setEnabled(false);
     }
 }
